@@ -1,10 +1,24 @@
 services:
   auth-service:
-    build: ./auth-service
+    build:
+      context: ./.
+      target: production # production or dev
     container_name: auth-service
-    volumes:
-      - ./auth-service:/app
-      - /app/node_modules
+    environment:
+    - PORT=3333
+    - HOST=${HOST:?}
+    - LOG_LEVEL=${LOG_LEVEL:?}
+    - APP_KEY=${APP_KEY:?}
+    - APP_URL=${APP_URL:?}
+    - SESSION_DRIVER=${SESSION_DRIVER:?}
+    - DB_HOST=${DB_HOST:?}
+    - DB_PORT=${DB_PORT:?}
+    - DB_USER=${DB_USER:?}
+    - DB_PASSWORD=${DB_PASSWORD:?}
+    - DB_DATABASE=${DB_DATABASE:?}
+    # volumes:
+      # - ./auth-service:/app
+      # - /app/node_modules
     depends_on:
       postgres:
         condition: service_healthy
@@ -12,16 +26,21 @@ services:
       - "3333:3333"
     networks:
       - auth-backend
+      - public-network
+    restart: always
+    
+
   postgres:
     image: postgres:16-alpine
     container_name: postgres
-    restart: always
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
     ports:
-      - "5432:5432"
+      - "5432:5432" #TODO : Expose port only in dev mode, not in production
+    networks:
+      - auth-backend
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -29,12 +48,14 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
-    networks:
-      - auth-backend
+    restart: always
 
 networks:
   auth-backend:
     driver: bridge
+    internal: true
+  public-network:
+    external: true
 
 volumes:
   postgres_data:
