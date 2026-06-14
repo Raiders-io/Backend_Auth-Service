@@ -36,52 +36,11 @@ export class AuthAccessTokenSchema extends BaseModel {
   @column()
   declare name: string | null
   @column()
-  declare tokenableId: number
+  declare tokenableId: string
   @column()
   declare type: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
-}
-
-export class ConversationParticipantSchema extends BaseModel {
-  static $columns = ['conversationId', 'id', 'joinedAt', 'userId'] as const
-  $columns = ConversationParticipantSchema.$columns
-  @column()
-  declare conversationId: number | null
-  @column({ isPrimary: true })
-  declare id: number
-  @column.dateTime()
-  declare joinedAt: DateTime
-  @column()
-  declare userId: number
-}
-
-export class ConversationSchema extends BaseModel {
-  static $columns = ['createdAt', 'id', 'updatedAt'] as const
-  $columns = ConversationSchema.$columns
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-  @column({ isPrimary: true })
-  declare id: number
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
-}
-
-export class MessageSchema extends BaseModel {
-  static $columns = ['content', 'conversationId', 'createdAt', 'id', 'readAt', 'senderId'] as const
-  $columns = MessageSchema.$columns
-  @column()
-  declare content: string
-  @column()
-  declare conversationId: number | null
-  @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime
-  @column({ isPrimary: true })
-  declare id: number
-  @column.dateTime()
-  declare readAt: DateTime | null
-  @column()
-  declare senderId: number
 }
 
 export class UserSchema extends BaseModel {
@@ -94,7 +53,7 @@ export class UserSchema extends BaseModel {
   @column()
   declare fullName: string | null
   @column({ isPrimary: true })
-  declare id: number
+  declare id: string
   @column({ serializeAs: null })
   declare password: string
   @column.dateTime({ autoCreate: true, autoUpdate: true })
