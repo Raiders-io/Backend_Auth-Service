@@ -4,6 +4,7 @@ services:
       context: ./.
       target: production # production or dev
     container_name: auth-service
+    image: auth-service:local
     environment:
     - PORT=3333
     - HOST=${HOST:?}
@@ -31,18 +32,18 @@ services:
     
 
   postgres:
-    image: postgres:16-alpine
-    container_name: postgres
+    image: postgres:18.4-alpine3.23
+    container_name: auth-db
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_DATABASE}
-    ports:
-      - "5432:5432" #TODO : Expose port only in dev mode, not in production
+    # ports:
+    #   - "5432:5432" #TODO : Expose port only in dev mode, not in production
     networks:
       - auth-backend
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - deployments-db-data:/var/lib/postgresql/18/docker
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}"]
       interval: 5s
@@ -58,4 +59,4 @@ networks:
     external: true
 
 volumes:
-  postgres_data:
+  deployments-db-data:
