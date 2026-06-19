@@ -2,7 +2,7 @@ services:
   auth-service:
     build:
       context: ./.
-      target: production # production or dev
+      target: dev # production or dev
     container_name: auth-service
     image: auth-service:local
     environment:
