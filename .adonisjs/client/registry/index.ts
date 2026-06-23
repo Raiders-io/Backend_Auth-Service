@@ -24,6 +24,12 @@ const routes = {
     tokens: [{"old":"/auth/verify","type":0,"val":"auth","end":""},{"old":"/auth/verify","type":0,"val":"verify","end":""}],
     types: placeholder as Registry['auth.verify_tokens.verify']['types'],
   },
+  'auth.users.index': {
+    methods: ["GET","HEAD"],
+    pattern: '/auth/users',
+    tokens: [{"old":"/auth/users","type":0,"val":"auth","end":""},{"old":"/auth/users","type":0,"val":"users","end":""}],
+    types: placeholder as Registry['auth.users.index']['types'],
+  },
   'profile.profile.show': {
     methods: ["GET","HEAD"],
     pattern: '/account/profile',

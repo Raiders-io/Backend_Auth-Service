@@ -16,21 +16,20 @@ router.get('/auth', () => {
 })
 
 router.group(() => {
-  router
-    .group(() => {
-      router.post('signup', [controllers.NewAccount, 'store'])
-      router.post('login', [controllers.AccessTokens, 'store'])
-      router.get('verify', [controllers.VerifyTokens, 'verify']).use(middleware.auth())
-    })
-    .prefix('/auth')
-    .as('auth')
+    router.group(() => {
+        router.post('signup', [controllers.NewAccount, 'store'])
+        router.post('login', [controllers.AccessTokens, 'store'])
+        router.get('verify', [controllers.VerifyTokens, 'verify']).use(middleware.auth())
+		router.get('/users', [controllers.Users, 'index']).use(middleware.auth())
+      })
+      .prefix('/auth')
+      .as('auth')
 
-  router
-    .group(() => {
-      router.get('profile', [controllers.Profile, 'show'])
-      router.post('logout', [controllers.AccessTokens, 'destroy'])
-    })
-    .prefix('account')
-    .as('profile')
-    .use(middleware.auth())
-})
+    router.group(() => {
+        router.get('profile', [controllers.Profile, 'show'])
+        router.post('logout', [controllers.AccessTokens, 'destroy'])
+      })
+      .prefix('account')
+      .as('profile')
+      .use(middleware.auth())
+  })

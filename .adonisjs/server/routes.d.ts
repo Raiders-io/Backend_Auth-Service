@@ -7,15 +7,18 @@ export type ScannedRoutes = {
     'auth.new_account.store': { paramsTuple?: []; params?: {} }
     'auth.access_tokens.store': { paramsTuple?: []; params?: {} }
     'auth.verify_tokens.verify': { paramsTuple?: []; params?: {} }
+    'auth.users.index': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
     'profile.access_tokens.destroy': { paramsTuple?: []; params?: {} }
   }
   GET: {
     'auth.verify_tokens.verify': { paramsTuple?: []; params?: {} }
+    'auth.users.index': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
   }
   HEAD: {
     'auth.verify_tokens.verify': { paramsTuple?: []; params?: {} }
+    'auth.users.index': { paramsTuple?: []; params?: {} }
     'profile.profile.show': { paramsTuple?: []; params?: {} }
   }
   POST: {

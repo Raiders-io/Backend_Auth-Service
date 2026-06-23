@@ -12,6 +12,9 @@ export interface ApiDefinition {
     verifyTokens: {
       verify: typeof routes['auth.verify_tokens.verify']
     }
+    users: {
+      index: typeof routes['auth.users.index']
+    }
   }
   profile: {
     profile: {
