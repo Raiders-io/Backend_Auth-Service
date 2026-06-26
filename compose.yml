@@ -27,7 +27,7 @@ services:
       - "3333:3333"
     networks:
       - auth-backend
-      - public-network
+      - api-network
     restart: always
     
 
@@ -55,7 +55,7 @@ networks:
   auth-backend:
     driver: bridge
     internal: true
-  public-network:
+  api-network:
     external: true
 
 volumes:
