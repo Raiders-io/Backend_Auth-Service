@@ -15,17 +15,20 @@ router.get('/auth', () => {
   return { hello: 'world' }
 })
 
-router.group(() => {
-    router.group(() => {
+router
+  .group(() => {
+    router
+      .group(() => {
         router.post('signup', [controllers.NewAccount, 'store'])
         router.post('login', [controllers.AccessTokens, 'store'])
         router.get('verify', [controllers.VerifyTokens, 'verify']).use(middleware.auth())
-		router.get('/users', [controllers.Users, 'index']).use(middleware.auth())
+        router.get('/users', [controllers.Users, 'index']).use(middleware.auth())
       })
-      .prefix('/auth')
       .as('auth')
+      .prefix('auth')
 
-    router.group(() => {
+    router
+      .group(() => {
         router.get('profile', [controllers.Profile, 'show'])
         router.post('logout', [controllers.AccessTokens, 'destroy'])
       })
@@ -33,3 +36,4 @@ router.group(() => {
       .as('profile')
       .use(middleware.auth())
   })
+  .prefix('/api/v1/')

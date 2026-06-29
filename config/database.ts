@@ -65,7 +65,7 @@ const dbConfig = defineConfig({
       migrations: {
         naturalSort: true,
         paths: ['database/migrations'],
-		disableLocks: true,
+		// disableLocks: true,
       },
       debug: app.inDev,
     },

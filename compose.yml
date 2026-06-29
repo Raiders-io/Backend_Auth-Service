@@ -6,30 +6,29 @@ services:
     container_name: auth-service
     image: auth-service:local
     environment:
-    - PORT=3333
-    - HOST=${HOST:?}
-    - LOG_LEVEL=${LOG_LEVEL:?}
-    - APP_KEY=${APP_KEY:?}
-    - APP_URL=${APP_URL:?}
-    - SESSION_DRIVER=${SESSION_DRIVER:?}
-    - DB_HOST=${DB_HOST:?}
-    - DB_PORT=${DB_PORT:?}
-    - DB_USER=${DB_USER:?}
-    - DB_PASSWORD=${DB_PASSWORD:?}
-    - DB_DATABASE=${DB_DATABASE:?}
+      - PORT=3333
+      - HOST=${HOST:?}
+      - LOG_LEVEL=${LOG_LEVEL:?}
+      - APP_KEY=${APP_KEY:?}
+      - APP_URL=${APP_URL:?}
+      - SESSION_DRIVER=${SESSION_DRIVER:?}
+      - DB_HOST=${DB_HOST:?}
+      - DB_PORT=${DB_PORT:?}
+      - DB_USER=${DB_USER:?}
+      - DB_PASSWORD=${DB_PASSWORD:?}
+      - DB_DATABASE=${DB_DATABASE:?}
     # volumes:
-      # - ./auth-service:/app
-      # - /app/node_modules
+    # - ./auth-service:/app
+    # - /app/node_modules
     depends_on:
       postgres:
         condition: service_healthy
     ports:
-      - "3333:3333"
+      - '3333:3333'
     networks:
       - auth-backend
       - api-network
     restart: always
-    
 
   postgres:
     image: postgres:18.4-alpine3.23
@@ -45,7 +44,7 @@ services:
     volumes:
       - deployments-db-data:/var/lib/postgresql/18/docker
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_DATABASE}"]
+      test: ['CMD-SHELL', 'pg_isready -U ${DB_USER} -d ${DB_DATABASE}']
       interval: 5s
       timeout: 5s
       retries: 10
