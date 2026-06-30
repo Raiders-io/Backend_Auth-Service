@@ -31,4 +31,14 @@ export default await Env.create(new URL('../', import.meta.url), {
   DB_USER: Env.schema.string(),
   DB_PASSWORD: Env.schema.secret(),
   DB_DATABASE: Env.schema.string(),
+
+  /*
+  |----------------------------------------------------------
+  | Variables for configuring ally package
+  |----------------------------------------------------------
+  */
+  OAUTH_GITHUB_CLIENT_ID: Env.schema.string(),
+  OAUTH_GITHUB_CLIENT_SECRET: Env.schema.string(),
+  OAUTH_GOOGLE_CLIENT_ID: Env.schema.string(),
+  OAUTH_GOOGLE_CLIENT_SECRET: Env.schema.string(),
 })
