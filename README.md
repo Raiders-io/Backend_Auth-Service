@@ -6,7 +6,7 @@ The project is divided in 3 softwares :
 
 - `Backend_Auth-Service` : provides access to the object storage.
 - `PostgreSQL`
-  - user profile, access, and other informations...
+  - user profile, access tokens, and other informations...
 
 ## Installation
 
@@ -17,3 +17,11 @@ If you wish to setup all the `.env` vars directly, we advise you to use this com
 ```sh
 make env
 ```
+
+## Flow
+
+See the [flow.md in Arch/](Arch/flow.md).
+
+## How to use
+
+See the [README.md in Arch/](Arch/README.md).

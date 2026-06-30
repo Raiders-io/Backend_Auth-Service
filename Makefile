@@ -8,7 +8,7 @@ all:
 	@$(MAKE) $(NAME)
 
 $(NAME):
-	docker network create api-network || true
+	docker network create --internal api-network || true
 	docker compose up -d --build --force-recreate --remove-orphans
 
 env:
