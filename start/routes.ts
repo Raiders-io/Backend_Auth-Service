@@ -23,6 +23,7 @@ router
         router.post('login', [controllers.AccessTokens, 'store'])
         router.get('verify', [controllers.VerifyTokens, 'verify']).use(middleware.auth())
         router.get('/users', [controllers.Users, 'index']).use(middleware.auth())
+        router.delete('delete', [controllers.Users, 'delete']).use(middleware.auth())
       })
       .as('auth')
       .prefix('auth')

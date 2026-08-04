@@ -2,7 +2,7 @@ services:
   auth-service:
     build:
       context: ./.
-      target: dev # production or dev
+      target: production # production or dev
     container_name: auth-service
     image: auth-service:local
     environment:
@@ -28,6 +28,7 @@ services:
     networks:
       - auth-backend
       - api-network
+      - public-network
     restart: always
 
   postgres:
@@ -55,6 +56,8 @@ networks:
     driver: bridge
     internal: true
   api-network:
+    external: true
+  public-network:
     external: true
 
 volumes:
