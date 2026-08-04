@@ -25,10 +25,19 @@ export default await Env.create(new URL('../', import.meta.url), {
   // Session
   SESSION_DRIVER: Env.schema.enum(['cookie', 'memory', 'database'] as const),
 
-  //Databse
+  //Database
   DB_HOST: Env.schema.string(),
   DB_PORT: Env.schema.number(),
   DB_USER: Env.schema.string(),
   DB_PASSWORD: Env.schema.secret(),
   DB_DATABASE: Env.schema.string(),
+
+  /*
+  |--------------------------------------------------------------------------
+  | Variables for configuring RabbitMQ
+  |--------------------------------------------------------------------------
+  */
+  RABBITMQ_DEFAULT_USER: Env.schema.string(),
+  RABBITMQ_DEFAULT_PASS: Env.schema.string(),
+  RABBITMQ_HOSTNAME: Env.schema.string(),
 })
