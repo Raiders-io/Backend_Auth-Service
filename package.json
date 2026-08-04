@@ -70,6 +70,7 @@
     "@vinejs/vine": "^4.3.1",
     "luxon": "^3.7.2",
     "pg": "^8.21.0",
+    "rabbitmq-client": "^5.0.8",
     "reflect-metadata": "^0.2.2"
   },
   "hotHook": {

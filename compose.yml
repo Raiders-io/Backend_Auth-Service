@@ -17,6 +17,9 @@ services:
       - DB_USER=${DB_USER:?}
       - DB_PASSWORD=${DB_PASSWORD:?}
       - DB_DATABASE=${DB_DATABASE:?}
+      - RABBITMQ_HOSTNAME=${RABBITMQ_HOSTNAME:?}
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER:?}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS:?}
     # volumes:
     # - ./auth-service:/app
     # - /app/node_modules
