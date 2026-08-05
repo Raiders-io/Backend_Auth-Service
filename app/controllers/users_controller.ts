@@ -10,7 +10,7 @@ export default class UsersController {
     return response.ok({ data: users })
   }
 
-  async delete ({ auth, response }: HttpContext) {
+  async destroy ({ auth, response }: HttpContext) {
     const currentUser = auth.getUserOrFail()
     await User.query().where('id', currentUser.id).delete()
     return response.ok({ message: 'User deleted successfully' })
