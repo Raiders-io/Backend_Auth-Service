@@ -28,7 +28,6 @@ services:
     networks:
       - auth-backend
       - api-network
-      - public-network
     restart: always
 
   postgres:
@@ -56,8 +55,6 @@ networks:
     driver: bridge
     internal: true
   api-network:
-    external: true
-  public-network:
     external: true
 
 volumes:
