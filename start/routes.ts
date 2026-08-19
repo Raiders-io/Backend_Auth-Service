@@ -24,12 +24,10 @@ router
         router.get('verify', [controllers.VerifyTokens, 'verify']).use(middleware.auth())
         router.get('users', [controllers.Users, 'index']).use(middleware.auth())
         router.delete('users', [controllers.Users, 'destroy']).use(middleware.auth())
-        router.get('/github/redirect', ({ ally, session }) => {
-          session.put('redirect.previousUrl', '/login')
-          return ally.use('github').redirect()
-        })
+        router.get('/:provider/redirect', [controllers.Oauth, 'redirect'])
+        router.get('/:provider/callback', [controllers.Oauth, 'callback'])
       })
-      .as('auth')
+      // .as('auth')
       .prefix('auth')
 
     router
@@ -42,3 +40,4 @@ router
       .use(middleware.auth())
   })
   .prefix('/api/v1/')
+  // .as('auth-service')
