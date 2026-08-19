@@ -8,6 +8,7 @@ export const controllers = {
   ChangeEmail: () => import('#controllers/change_email_controller'),
   ChangePassword: () => import('#controllers/change_password_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
+  Oauth: () => import('#controllers/oauth_controller'),
   Profile: () => import('#controllers/profile_controller'),
   Users: () => import('#controllers/users_controller'),
   VerifyTokens: () => import('#controllers/verify_tokens_controller'),
