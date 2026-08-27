@@ -1,0 +1,15 @@
+{
+  "version": "1",
+  "name": "BrunAuth",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "size": 0.0011873245239257812,
+  "filesCount": 5,
+  "presets": {
+    "requestType": "http",
+    "requestUrl": "{{PROTOCOL}}://{{HOST}}:{{PORT}}/"
+  }
+}

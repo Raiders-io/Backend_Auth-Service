@@ -1,0 +1,26 @@
+meta {
+  name: Signup
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{PROTOCOL}}://{{HOST}}:{{PORT}}/auth/signup
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "fullName": "Ada Lovelace",
+    "email": "fada@example.com",
+    "password": "password123",
+    "passwordConfirmation": "password123"
+  }
+  
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
