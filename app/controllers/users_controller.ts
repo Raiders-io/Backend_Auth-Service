@@ -1,6 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { publish } from '@yosone/broker'
+import { AuthUserDeletedEvent } from '#services/message_broker_service'
 
 export default class UsersController {
   async index({ auth, response }: HttpContext) {
@@ -18,7 +19,7 @@ export default class UsersController {
     publish('auth.events', {
       type: 'auth.user.deleted',
       payload: { userId: currentUser.id },
-    })
+    } as AuthUserDeletedEvent)
     return response.ok({ message: 'User deleted successfully' })
   }
 }

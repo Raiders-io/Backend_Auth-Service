@@ -7,24 +7,11 @@ Events followed :
 Events created :
 
 - `auth.user.created`
-- `auth.user.updated`
 - `auth.user.deleted`
 
 ## `auth.user.created`
 
 Published when a user is created.
-
-payload :
-
-```json
-{
-  userId: user-id,
-}
-```
-
-## `auth.user.updated`
-
-Published when a user is updated.
 
 payload :
 

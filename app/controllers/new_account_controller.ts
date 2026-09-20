@@ -3,6 +3,7 @@ import { signupValidator } from '#validators/user'
 import type { HttpContext } from '@adonisjs/core/http'
 import UserTransformer from '#transformers/user_transformer'
 import { publish } from '@yosone/broker'
+import { AuthUserCreatedEvent } from '#services/message_broker_service'
 
 export default class NewAccountController {
   async store({ request, serialize }: HttpContext) {
@@ -14,7 +15,7 @@ export default class NewAccountController {
     publish('auth.events', {
       type: 'auth.user.created',
       payload: { userId: user.id },
-    })
+    } as AuthUserCreatedEvent)
 
     return serialize({
       user: UserTransformer.transform(user),
