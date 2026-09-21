@@ -13,7 +13,11 @@ $(NAME):
 
 env:
 	@chmod +x ./setup_env.sh
-	@./setup_env.sh
+	@./setup_env.sh --non-interactive
+
+env-force:
+	@chmod +x ./setup_env.sh
+	@./setup_env.sh --non-interactive --force
 
 up:
 	docker compose up -d
