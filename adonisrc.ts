@@ -57,7 +57,8 @@ export default defineConfig({
     {
       file: () => import('#providers/message_broker_provider'),
       environment: ['web'],
-    }
+    },
+    () => import('@adonisjs/ally/ally_provider')
   ],
 
   /*
