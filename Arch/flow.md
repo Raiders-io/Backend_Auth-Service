@@ -6,11 +6,9 @@ User Info example :
 {
   "data": {
     "id": "1[...]2-3000-4000-5000-6[...]7",
-    "fullName": "John Doe",
     "email": "test@test.test",
     "createdAt": "2026-06-30T08:26:43.659+00:00",
     "updatedAt": "2026-06-30T08:26:43.659+00:00",
-    "initials": "JD"
   }
 }
 ```

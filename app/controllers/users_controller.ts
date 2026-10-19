@@ -6,9 +6,7 @@ import { AuthUserDeletedEvent } from '#validators/event'
 export default class UsersController {
   async index({ auth, response }: HttpContext) {
     const currentUser = auth.user!
-    const users = await User.query()
-      .whereNot('id', currentUser.id)
-      .select('id', 'fullName', 'email')
+    const users = await User.query().whereNot('id', currentUser.id).select('id', 'email')
     return response.ok({ data: users })
   }
 
