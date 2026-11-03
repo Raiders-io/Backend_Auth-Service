@@ -1,7 +1,7 @@
 import type { HttpContext } from '@adonisjs/core/http'
 import User from '#models/user'
 import { publish } from '@yosone/broker'
-import { AuthUserDeletedEvent } from '#validators/event'
+import { type AuthUserDeletedEvent } from '#validators/event'
 
 export default class UsersController {
   async index({ auth, response }: HttpContext) {
