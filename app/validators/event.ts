@@ -1,13 +1,13 @@
 import vine from '@vinejs/vine'
 import { type InferInput } from '@vinejs/vine/types'
 
-export const AuthUserDeletedEvent = vine.create({
-  type: vine.literal('auth.user.deleted'),
+export const AuthStartedEvent = vine.create({
+  type: vine.literal('auth.started'),
   payload: vine.object({
-    userId: vine.string().uuid({ version: [4] }),
+    message: vine.string().minLength(1),
   }),
 })
-export type AuthUserDeletedEvent = InferInput<typeof AuthUserDeletedEvent>
+export type AuthStartedEvent = InferInput<typeof AuthStartedEvent>
 
 export const AuthUserCreatedEvent = vine.create({
   type: vine.literal('auth.user.created'),
@@ -16,3 +16,11 @@ export const AuthUserCreatedEvent = vine.create({
   }),
 })
 export type AuthUserCreatedEvent = InferInput<typeof AuthUserCreatedEvent>
+
+export const AuthUserDeletedEvent = vine.create({
+  type: vine.literal('auth.user.deleted'),
+  payload: vine.object({
+    userId: vine.string().uuid({ version: [4] }),
+  }),
+})
+export type AuthUserDeletedEvent = InferInput<typeof AuthUserDeletedEvent>

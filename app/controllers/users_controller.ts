@@ -14,10 +14,12 @@ export default class UsersController {
     const currentUser = auth.getUserOrFail()
     await User.query().where('id', currentUser.id).delete()
 
-    publish('auth.events', {
+    const event: AuthUserDeletedEvent = {
       type: 'auth.user.deleted',
       payload: { userId: currentUser.id },
-    } as AuthUserDeletedEvent)
+    }
+
+    publish('auth.events', event)
     return response.ok({ message: 'User deleted successfully' })
   }
 }

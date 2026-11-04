@@ -12,10 +12,12 @@ export default class NewAccountController {
     const user = await User.create({ email, password })
     const token = await User.accessTokens.create(user)
 
-    publish('auth.events', {
+    const event: AuthUserCreatedEvent = {
       type: 'auth.user.created',
       payload: { userId: user.id },
-    } as AuthUserCreatedEvent)
+    }
+
+    publish('auth.events', event)
 
     return serialize({
       user: UserTransformer.transform(user),

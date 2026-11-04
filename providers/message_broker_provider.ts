@@ -1,3 +1,4 @@
+import type { AuthStartedEvent } from '#validators/event'
 import type { ApplicationService } from '@adonisjs/core/types'
 import { Broker, publish } from '@yosone/broker'
 
@@ -24,12 +25,14 @@ export default class MessageBrokerProvider {
       consumer: 'auth-service',
     })
 
-    publish('auth.events', {
+    const event: AuthStartedEvent = {
       type: 'auth.started',
       payload: {
         message: 'Auth service has been started',
       },
-    })
+    }
+
+    publish('auth.events', event)
   }
   /**
    * The process has been started
