@@ -23,3 +23,21 @@ export const loginValidator = vine.create({
   email: email(),
   password: vine.string(),
 })
+
+/**
+ * Validator to use when changing the email of the authenticated user.
+ * The password confirms the identity of the user.
+ */
+export const changeEmailValidator = vine.create({
+  email: email().unique({ table: 'users', column: 'email' }),
+  password: vine.string(),
+})
+
+/**
+ * Validator to use when changing the password of the authenticated user.
+ */
+export const changePasswordValidator = vine.create({
+  currentPassword: vine.string(),
+  password: password(),
+  passwordConfirmation: password().sameAs('password'),
+})
